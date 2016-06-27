@@ -62,7 +62,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>mx.jalan.gdcu.Tests.Tests</mainClass>
+                            <mainClass>mx.jalan.gdcu.Tests.GDCU</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -59,7 +59,7 @@ public class Detalles extends javax.swing.JFrame {
         tablaArchivos = new javax.swing.JTable();
         btnFiltrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalles");
 
         tablaArchivos.setModel(new javax.swing.table.DefaultTableModel(
