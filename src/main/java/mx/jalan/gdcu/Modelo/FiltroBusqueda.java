@@ -7,6 +7,7 @@ package mx.jalan.gdcu.Modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import mx.jalan.gdcu.Utils.Utils;
 
 /**
  *
@@ -37,16 +38,16 @@ public class FiltroBusqueda {
         setArchivoOculto(archivoOcultoculto);
         
         ArrayList<String> exts = null;
-        
+        exts = new ArrayList<String>();
         //Cuando extensiones incluye el comodin "*" para considerar todas las extensiones, lo que hace es limpiar el array en caso de que haya dejado otras extensiones
-        if(extensiones.contains("*")){
+        if(Utils.esteArrayTiene(extensiones, "*")){
+        //if(extensiones.contains("<*")){
             if(extensiones.size() > 1){
                 extensiones.clear();
-                extensiones.add("*"); //Y solo deja el comodin
+                
             }
+            exts.add("*"); //Y solo deja el comodin
         }else{
-            exts = new ArrayList<String>();
-            
             /*
                 Todas las extensiones lo cambia a minusculas para mi comodidad aunque 
                 no deberia de haber ningun problema si estan en mayusculas o una combinacion de ambos.

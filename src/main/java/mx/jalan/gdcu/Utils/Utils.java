@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JTable;
 import org.apache.commons.io.FileUtils;
@@ -25,13 +26,13 @@ public class Utils {
     
     public static String getExtension(File archivo){
         String[] data = archivo.getName().split("\\.");
-        
+
         if(data.length == 2){
             return data[1];
         }else if(data.length > 2){
             return data[data.length-1];
         }else{
-            return null;
+            return "";
         }
     }
     
@@ -47,7 +48,7 @@ public class Utils {
         }else if(data.length == 1){
             return data[0];
         }else{
-            return null;
+            return "";
         }
     }
     
@@ -139,5 +140,13 @@ public class Utils {
         }
         
         return -1;
+    }
+    
+    public static boolean esteArrayTiene(ArrayList<String> array, String str){
+        for(String strTemp : array){
+            if(strTemp.equals(str))     return true;
+        }
+        
+        return false;
     }
 }

@@ -133,14 +133,18 @@ public class Buscador {
     public void actualizarLabels(File archivo){
         String extension = Utils.getExtension(archivo);
         
+        boolean considerarTodas = false;
+        
+        if(Utils.esteArrayTiene(extensiones, "*"))  considerarTodas = true;
+        
         for(String ext : extensiones){
-            if(ext.equalsIgnoreCase(extension)){ //Si la extension del archivo es de las requeridas.
-                if(ext.equalsIgnoreCase("zip")){
+            if(ext.equalsIgnoreCase(extension) || considerarTodas){ //Si la extension del archivo es de las requeridas.
+                if((ext.equalsIgnoreCase("zip") || considerarTodas) && extension.equalsIgnoreCase("zip")){
                     archivosZipEncontrados++;
                     if(view != null){
                         view.getLblZipCount().setText(archivosZipEncontrados+"");
                     }
-                }else if(ext.equalsIgnoreCase("rar")){
+                }else if((ext.equalsIgnoreCase("rar") || considerarTodas) && extension.equalsIgnoreCase("rar")){
                     archivosRarEncontrados++;
                     if(view != null){
                         view.getLblRarCount().setText(archivosRarEncontrados+"");

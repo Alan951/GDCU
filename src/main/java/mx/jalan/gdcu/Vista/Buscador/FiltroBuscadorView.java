@@ -526,6 +526,12 @@ public class FiltroBuscadorView extends javax.swing.JDialog {
         Date dateInf = modeloDateInf.getValue();
         Date dateSup = modeloDateSup.getValue();
 
+        //Extensiones
+        if(extensiones.size() == 0){
+            JOptionPane.showMessageDialog(this, "Debes de escoger almenos una extension", "Agrega una extensión", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
         filtro = new FiltroBusqueda(inf, sup, dateInf, dateSup, incluirCarpetasOcultas, incluirArvosOcultos, extensiones);
 
         //Set unidades
