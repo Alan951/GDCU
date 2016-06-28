@@ -46,6 +46,9 @@ public class Filtrador {
             
         }catch(IOException e){
             // TODO : determinar como le dire al usuario que hubo un problema al recuperar la fecha de este archivo.
+            System.out.println("Error al generar fecha del archivo: "+archivo.getAbsolutePath());
+            //e.printStackTrace();
+            return false;
         }
         if(fechaInf != null || fechaSup != null){
             if(fechaInf != null && fechaSup != null){

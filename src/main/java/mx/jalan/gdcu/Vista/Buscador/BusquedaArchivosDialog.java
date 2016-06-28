@@ -106,6 +106,11 @@ public class BusquedaArchivosDialog extends javax.swing.JDialog {
         String mensaje = null;
         boolean isEncrypted = false;
         
+        //InitLabels
+        lblRarPass.setText(fM.getArchivosRarConContraseña() + rarLabel);
+        lblZipPass.setText(fM.getArchivosZipConContraseña() + zipLabel);
+        lblInvalidos.setText(archivoNoValidos + invalidosLabel);
+        
         try{
             for(File f : buscador.getArchivosEncontrados()){
                 //Pausar

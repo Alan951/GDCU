@@ -27,3 +27,5 @@ Algunos archivos son generados por la aplicación, por ejemplo, la carpeta Unrar
 
 #####Como importar el proyecto a netbeans
 Para descargar el proyecto a netbeans es relativamente sencillo, primero debes de ir a Team -> Git -> Clone… y en Repository URL: introduces https://github.com/Alan951/GDCU.git y listo, la clase principal está en mx.jalan.GDCU.Tests.GDCU
+
+
