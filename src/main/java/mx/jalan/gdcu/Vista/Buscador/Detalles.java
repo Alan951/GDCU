@@ -1,10 +1,15 @@
 package mx.jalan.gdcu.Vista.Buscador;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import mx.jalan.gdcu.Controlador.CtrlDetalles;
 import mx.jalan.gdcu.Modelo.FiltroBusqueda;
 import mx.jalan.gdcu.Utils.GeneradorHashes;
+import mx.jalan.gdcu.Vista.VistaModelos.MenuTabla;
+import mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles;
 import mx.jalan.gdcu.Vista.VistaModelos.TablaModeloArchivoDetalles;
 
 /**
@@ -33,7 +38,7 @@ public class Detalles extends javax.swing.JFrame {
     
     private void initTable(){
         tMAD = new TablaModeloArchivoDetalles(controlador.getArchivos());
-        tablaArchivos.setModel(tMAD);
+        tablaArchivos.setModelo(tMAD);
         
         tablaArchivos.setAutoCreateRowSorter(true);
     }
@@ -46,8 +51,12 @@ public class Detalles extends javax.swing.JFrame {
         return tMAD;
     }
     
-    public JTable getTabla(){
+    public TablaArchivoDetalles getTabla(){
         return tablaArchivos;
+    }
+    
+    public JLabel getLblElementos(){
+        return lblElementos;
     }
 
 
@@ -55,12 +64,22 @@ public class Detalles extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArchivos = new javax.swing.JTable();
         btnFiltrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblElementos = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaArchivos = new mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalles");
+
+        btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/filter.png"))); // NOI18N
+        btnFiltrar.setText("Filtrar");
+        btnFiltrar.setContentAreaFilled(false);
+
+        jLabel1.setText("Elementos en la tabla: ");
+
+        lblElementos.setText(" ");
 
         tablaArchivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,11 +92,7 @@ public class Detalles extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaArchivos);
-
-        btnFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/filter.png"))); // NOI18N
-        btnFiltrar.setText("Filtrar");
-        btnFiltrar.setContentAreaFilled(false);
+        jScrollPane2.setViewportView(tablaArchivos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,10 +101,15 @@ public class Detalles extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFiltrar)))
+                        .addComponent(btnFiltrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblElementos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -98,8 +118,12 @@ public class Detalles extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(btnFiltrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblElementos))
+                .addContainerGap())
         );
 
         pack();
@@ -107,7 +131,9 @@ public class Detalles extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiltrar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaArchivos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblElementos;
+    private mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles tablaArchivos;
     // End of variables declaration//GEN-END:variables
 }

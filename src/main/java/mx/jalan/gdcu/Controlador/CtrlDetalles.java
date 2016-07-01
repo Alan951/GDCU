@@ -10,10 +10,12 @@ import java.awt.event.ActionListener;
 import mx.jalan.gdcu.Modelo.Archivo;
 import mx.jalan.gdcu.Vista.Buscador.Detalles;
 import java.util.ArrayList;
+import javax.swing.JPopupMenu;
 import javax.swing.table.TableColumnModel;
 import mx.jalan.gdcu.Modelo.FiltroBusqueda;
 import mx.jalan.gdcu.Utils.Utils;
 import mx.jalan.gdcu.Vista.Buscador.FiltroBuscadorView;
+import mx.jalan.gdcu.Vista.VistaModelos.MenuTabla;
 import mx.jalan.gdcu.Vista.VistaModelos.Render;
 
 /**
@@ -68,6 +70,10 @@ public class CtrlDetalles {
         
         //--render&model
         initColumnModel();
+        
+        //--initMenu
+        bd.getTabla().setMenu(new MenuTabla(bd.getTabla(), bd.getTabla().getModelo()));
+        //bd.getTabla().add(popup.getMenu());
     }
     
     public void initBtnListener(){
@@ -79,12 +85,13 @@ public class CtrlDetalles {
                 if(fv.getPressOk()){
                     filtro = fv.getFiltroBusqueda();
                     bd.getModelo().aplicarFiltro(filtro);
+                    bd.getLblElementos().setText(bd.getModelo().getElementosViendose()+"");
                 }
             }
         });
     }
     
-        public ArrayList<Archivo> getArchivos(){
+    public ArrayList<Archivo> getArchivos(){
         return archivos;
     }
 }

@@ -149,4 +149,13 @@ public class Utils {
         
         return false;
     }
+    
+    public static boolean esArchivoComprimido(File f){
+        String extension = getExtension(f);
+        if(extension.equalsIgnoreCase("zip"))
+            return true;
+        else if(extension.equalsIgnoreCase("rar"))
+            return true;
+        else return false;
+    }
 }

@@ -55,6 +55,20 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
         update();
     }
     
+    public Archivo getArchivo(int row){
+        if(archivosFiltrados != null)
+            return archivosFiltrados.get(row);
+        else
+            return archivos.get(row);
+    }
+    
+    public int getElementosViendose(){
+        if(archivosFiltrados != null)
+            return archivosFiltrados.size();
+        else
+            return archivos.size();
+    }
+    
     public ArrayList<Archivo> getTodosLosArchivos(){
         if(archivosFiltrados != null)
             return archivosFiltrados;
