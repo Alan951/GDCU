@@ -116,7 +116,7 @@ public class AgregarArchivo extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arcivos rar y zip", "zip", "rar");
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos rar y zip", "zip", "rar");
                 fileChooser.setFileFilter(filtro);
                 int res = fileChooser.showOpenDialog(null);
                 

@@ -23,6 +23,14 @@ public class Opciones extends javax.swing.JDialog {
     public Opciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        initConfig();
+    }
+    
+    public void initConfig(){
+        Propiedades prop = Propiedades.getInstance();
+        
+        txtRarPath.setText(prop.getPropertie(Propiedades.WINRAR_PATH));
     }
 
     /**
