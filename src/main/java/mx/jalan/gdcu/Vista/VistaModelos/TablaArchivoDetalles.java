@@ -7,8 +7,11 @@ package mx.jalan.gdcu.Vista.VistaModelos;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableColumnModel;
+import mx.jalan.gdcu.Modelo.Archivo;
 import mx.jalan.gdcu.Utils.Utils;
 import mx.jalan.gdcu.Vista.VistaModelos.TablaRender.Render;
 
@@ -25,27 +28,34 @@ public class TablaArchivoDetalles extends JTable{
         this.menu = menu;
         //THANKS clamp | http://stackoverflow.com/questions/3558293/java-swing-jtable-right-click-menu-how-do-i-get-it-to-select-aka-highlight-t
         addMouseListener(new MouseAdapter(){
+            /*private int q;
+            
+            @Override
+            public void mousePressed(MouseEvent e){
+                q = rowAtPoint(e.getPoint());
+                //super.mousePressed(e);
+            }*/
+            
             @Override
             public void mouseReleased(MouseEvent e){
+                //super.mouseReleased(e);
                 int r = rowAtPoint(e.getPoint());
-                if(r >= 0 && r < getRowCount()){
-                    setRowSelectionInterval(r, r);
-                }else{
-                    clearSelection();
-                }
                 
                 int rowIndex = getSelectedRow();
-                if(rowIndex < 0)
-                    return;
+                
+                if(rowIndex == -1)  return;
+                
+                if(getSelectedRows().length == 1 && SwingUtilities.isRightMouseButton(e)){
+                    setRowSelectionInterval(r, r);
+                }
+                
                 if(e.isPopupTrigger() && e.getComponent() instanceof JTable){
+                    ArrayList<Archivo> archivos = new ArrayList<Archivo>();
+                    for(int row : getSelectedRows()){
+                        archivos.add(getModelo().getArchivo(convertRowIndexToModel(row)));
+                    }
                     
-                    if(!Utils.esArchivoComprimido(modelo.getArchivo(convertRowIndexToModel(rowIndex))))
-                        menu.noVisible(1);
-                    else
-                        menu.limpiar();
-                    
-                    menu.getMenu().show(e.getComponent(), e.getX(), e.getY());
-                    
+                    menu.mostrarMenu(archivos, e);
                 }
             }
         });

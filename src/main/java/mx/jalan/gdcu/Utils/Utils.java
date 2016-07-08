@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JTable;
+import mx.jalan.gdcu.Modelo.Archivo;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -142,7 +143,7 @@ public class Utils {
         return -1;
     }
     
-    public static boolean esteArrayTiene(ArrayList<String> array, String str){
+    public static boolean esteArrayTieneEsteStr(ArrayList<String> array, String str){
         for(String strTemp : array){
             if(strTemp.equals(str))     return true;
         }
@@ -157,6 +158,14 @@ public class Utils {
         else if(extension.equalsIgnoreCase("rar"))
             return true;
         else return false;
+    }
+    
+    public static boolean esZip(File f){        
+        return getExtension(f).equalsIgnoreCase("zip");
+    }
+    
+    public static boolean esRar(File f){
+        return getExtension(f).equalsIgnoreCase("rar");
     }
     
     public static boolean isPathValid(String path){

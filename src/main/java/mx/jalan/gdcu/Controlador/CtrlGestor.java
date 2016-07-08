@@ -45,7 +45,7 @@ public class CtrlGestor {
         initMenuListeners();
         
         //--initMenuTabla
-        vistaGestor.getTablaArchivos().setMenu(new MenuTabla(vistaGestor.getTablaArchivos(), vistaGestor.getTablaArchivos().getModelo()));
+        vistaGestor.getTablaArchivos().setMenu(new MenuTabla(vistaGestor.getTablaArchivos()));
     }
     
     private void initTabla(){
@@ -55,6 +55,8 @@ public class CtrlGestor {
         } catch (FileNotFoundException ex) {}
         
         //vistaGestor.getTablaArchivos().setModel(tablaModelo);
+        
+        vistaGestor.getTablaArchivos().setAutoCreateRowSorter(true);
         
         vistaGestor.getTablaArchivos().setModelo(tablaModelo);
         

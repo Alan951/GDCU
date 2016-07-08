@@ -50,7 +50,7 @@ public class CtrlDetalles {
         initBtnListener();
 
         //--initMenu
-        bd.getTabla().setMenu(new MenuTabla(bd.getTabla(), bd.getTabla().getModelo()));
+        bd.getTabla().setMenu(new MenuTabla(bd.getTabla()));
         //bd.getTabla().add(popup.getMenu());
     }
 

@@ -40,7 +40,7 @@ public class FiltroBusqueda {
         ArrayList<String> exts = null;
         exts = new ArrayList<String>();
         //Cuando extensiones incluye el comodin "*" para considerar todas las extensiones, lo que hace es limpiar el array en caso de que haya dejado otras extensiones
-        if(Utils.esteArrayTiene(extensiones, "*")){
+        if(Utils.esteArrayTieneEsteStr(extensiones, "*")){
         //if(extensiones.contains("<*")){
             if(extensiones.size() > 1){
                 extensiones.clear();

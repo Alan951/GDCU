@@ -135,7 +135,7 @@ public class Buscador {
         
         boolean considerarTodas = false;
         
-        if(Utils.esteArrayTiene(extensiones, "*"))  considerarTodas = true;
+        if(Utils.esteArrayTieneEsteStr(extensiones, "*"))  considerarTodas = true;
         
         for(String ext : extensiones){
             if(ext.equalsIgnoreCase(extension) || considerarTodas){ //Si la extension del archivo es de las requeridas.

@@ -101,18 +101,12 @@ public class GeneradorHashes {
                         modelo.fireTableCellUpdated(archivos.indexOf(a), posColumnHash);
                     
                 }catch(NoSuchAlgorithmException s){
-                
                 }catch(FileNotFoundException f){
                     System.out.println("No encontro archivo");
-                }catch(IOException e){
-                    
-                }
-                
-                
+                }catch(IOException e){}
             }
         };
-        
-        
+ 
         return work;
         
     }

@@ -23,7 +23,7 @@ public class Filtrador {
     public boolean filtrarArchivo(File archivo){
         //TODO corregir metodo contains
         //Filtro archivos por extension
-        if(!Utils.esteArrayTiene(filtro.getExtensiones(), "*")){
+        if(!Utils.esteArrayTieneEsteStr(filtro.getExtensiones(), "*")){
         //if(!filtro.getExtensiones().contains("<*")){ //En caso de que se consideren todas las extensiones entonces no sera necesario analizar las extensiones.
             String extension = Utils.getExtension(archivo);
             boolean extensionCorrecta = false;
