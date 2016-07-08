@@ -16,7 +16,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 import mx.jalan.gdcu.Utils.Utils;
-import mx.jalan.gdcu.Vista.VistaModelos.Render;
+import mx.jalan.gdcu.Vista.Gestor.Opciones;
+import mx.jalan.gdcu.Vista.VistaModelos.MenuTabla;
+import mx.jalan.gdcu.Vista.VistaModelos.TablaRender.Render;
 
 /**
  *
@@ -32,25 +34,31 @@ public class CtrlGestor {
     
     public void abrirGestor(){
         vistaGestor = new Gestor(this);
+        //--initTabla
+        initTabla();
         
-        try {
-            initTabla();
-        } catch (FileNotFoundException ex) {}
+        //--aplicarRenderizados
+        vistaGestor.getTablaArchivos().activarRenderizados();
         
         //--initListeners--
         initBtnListeners();
+        initMenuListeners();
+        
+        //--initMenuTabla
+        vistaGestor.getTablaArchivos().setMenu(new MenuTabla(vistaGestor.getTablaArchivos(), vistaGestor.getTablaArchivos().getModelo()));
     }
     
-    private void initTabla() throws FileNotFoundException{
-        //Carga la lista de archivos si es que la hay y lo envia al modelo de la tabla
-        tablaModelo = new TablaModeloArchivoDetalles(cargarListaArchivosGestor());
+    private void initTabla(){
+        try {
+            //Carga la lista de archivos si es que la hay y lo envia al modelo de la tabla
+            tablaModelo = new TablaModeloArchivoDetalles(cargarListaArchivosGestor());
+        } catch (FileNotFoundException ex) {}
         
-        vistaGestor.getTablaArchivos().setModel(tablaModelo);
+        //vistaGestor.getTablaArchivos().setModel(tablaModelo);
         
-        TableColumnModel m = vistaGestor.getTablaArchivos().getColumnModel();
+        vistaGestor.getTablaArchivos().setModelo(tablaModelo);
         
-        m.getColumn(Utils.getPosColumn(vistaGestor.getTablaArchivos(), "Fecha de creacion")).setCellRenderer(Render.getFechaRender());
-        m.getColumn(Utils.getPosColumn(vistaGestor.getTablaArchivos(), "Tamaño")).setCellRenderer(Render.getTamañoRender());
+        vistaGestor.getTablaArchivos().activarRenderizados();
         
         vistaGestor.getTablaArchivos().validate();
         vistaGestor.getTablaArchivos().repaint();
@@ -112,6 +120,18 @@ public class CtrlGestor {
         });
     }
     
+    public void initMenuListeners(){
+        vistaGestor.getMenuOpciones().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Opciones op = new Opciones(vistaGestor, true);
+                op.setLocationRelativeTo(null);
+                op.setVisible(true);
+            }
+        });
+        
+    }
+    
     public ArrayList<Archivo> cargarListaArchivosGestor() throws FileNotFoundException{
         File file = new File(pathListaArchivos);
         
@@ -124,6 +144,7 @@ public class CtrlGestor {
             } catch (IOException ex) {
                 Logger.getLogger(CtrlGestor.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
+                System.out.println("[DG] No encontro la clase \"Archivo\"");
                 return null;
             }
             

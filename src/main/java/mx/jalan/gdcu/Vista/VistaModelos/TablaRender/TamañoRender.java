@@ -1,4 +1,4 @@
-package mx.jalan.gdcu.Vista.VistaModelos;
+package mx.jalan.gdcu.Vista.VistaModelos.TablaRender;
 
 import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.commons.io.FileUtils;

@@ -158,4 +158,15 @@ public class Utils {
             return true;
         else return false;
     }
+    
+    public static boolean isPathValid(String path){
+        File f = new File(path);
+        
+        try{
+            f.getCanonicalPath();
+            return true;
+        }catch(IOException e){
+            return false;
+        }
+    }
 }

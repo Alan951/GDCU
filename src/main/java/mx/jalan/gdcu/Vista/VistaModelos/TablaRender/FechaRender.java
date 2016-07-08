@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.jalan.gdcu.Vista.VistaModelos;
+package mx.jalan.gdcu.Vista.VistaModelos.TablaRender;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

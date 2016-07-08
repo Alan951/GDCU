@@ -5,6 +5,7 @@
  */
 package mx.jalan.gdcu.Vista.VistaModelos;
 
+import Properties.Propiedades;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import mx.jalan.gdcu.Modelo.Archivo;
@@ -32,6 +34,8 @@ public class MenuTabla {
     private JTable tabla;
     private TablaModeloArchivoDetalles modelo;
     
+    private String winrarPath = null;
+    
     public MenuTabla(JTable tabla, TablaModeloArchivoDetalles modelo){
         this.tabla = tabla;
         this.modelo = modelo;
@@ -46,6 +50,14 @@ public class MenuTabla {
         
         //--listeners--
         initListeners();
+        
+        //--winrarPath
+        Propiedades prop = Propiedades.getInstance();
+        winrarPath = prop.getPropertie(Propiedades.WINRAR_PATH);
+        if(!(winrarPath != null && !winrarPath.equals(""))){
+            winrarPath = null;
+        }
+        
     }
     
     public void noVisible(int item){
@@ -86,8 +98,13 @@ public class MenuTabla {
                 if(row != -1){
                     Archivo archivo = modelo.getArchivo(row);
                     
+                    if(winrarPath == null){
+                        JOptionPane.showMessageDialog(null, "Debes de ir a las opciones e introducir la ruta de WinRAR de tu sistema para poder útilizar esta opción.", "Ops", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    
                     if(Utils.esArchivoComprimido(archivo)){
-                        String args[] = {"C:\\Program Files\\WinRAR\\WinRAR.exe", archivo.getAbsolutePath()};
+                        String args[] = {winrarPath, archivo.getAbsolutePath()};
                         
                         ProcessBuilder pb = new ProcessBuilder(args);
                         
@@ -95,9 +112,10 @@ public class MenuTabla {
                             Process p = pb.start();
                         } catch (IOException ex) {
                             System.out.println("[DG] Hubo un error en la ejecución del archivo");
+                            
+                            JOptionPane.showMessageDialog(null, "Hubo un error con la ruta de winrar\n\""+winrarPath+"\"\nVerifica que la ruta sea la adecuada en las opciones de GDCU.", "Error al abrir con winrar", JOptionPane.ERROR_MESSAGE);
                         }
                     }
-                    
                 }
             }
         });

@@ -2,7 +2,9 @@ package mx.jalan.gdcu.Vista.Gestor;
 
 import mx.jalan.gdcu.Controlador.CtrlGestor;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
+import mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles;
 
 /**
  *
@@ -41,8 +43,12 @@ public class Gestor extends javax.swing.JFrame {
         return btnExportar;
     }
 
-    public JTable getTablaArchivos() {
+    public TablaArchivoDetalles getTablaArchivos() {
         return tablaArchivos;
+    }
+    
+    public JMenuItem getMenuOpciones(){
+        return menuOpciones;
     }
     
     
@@ -50,33 +56,21 @@ public class Gestor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaArchivos = new javax.swing.JTable();
         panelMenus = new javax.swing.JPanel();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
         btnFiltrar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaArchivos = new mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        menuOpciones = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestor de contraseñas");
-
-        tablaArchivos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaArchivos);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttons/add.png"))); // NOI18N
         btnAgregar.setBorderPainted(false);
@@ -106,7 +100,7 @@ public class Gestor extends javax.swing.JFrame {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,13 +117,30 @@ public class Gestor extends javax.swing.JFrame {
                     .addComponent(btnExportar)
                     .addComponent(btnFiltrar)
                     .addComponent(btnGuardar))
-                .addGap(33, 33, 33))
+                .addGap(2, 2, 2))
         );
 
-        jMenu1.setText("File");
+        tablaArchivos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaArchivos);
+
+        jMenu1.setText("Archivo");
+
+        menuOpciones.setText("Opciones");
+        jMenu1.add(menuOpciones);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Editar");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -141,8 +152,8 @@ public class Gestor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(panelMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelMenus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -151,7 +162,7 @@ public class Gestor extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(panelMenus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -167,8 +178,9 @@ public class Gestor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem menuOpciones;
     private javax.swing.JPanel panelMenus;
-    private javax.swing.JTable tablaArchivos;
+    private mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles tablaArchivos;
     // End of variables declaration//GEN-END:variables
 }

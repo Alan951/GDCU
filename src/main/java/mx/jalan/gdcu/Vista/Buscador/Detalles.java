@@ -1,14 +1,9 @@
 package mx.jalan.gdcu.Vista.Buscador;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTable;
 import mx.jalan.gdcu.Controlador.CtrlDetalles;
-import mx.jalan.gdcu.Modelo.FiltroBusqueda;
 import mx.jalan.gdcu.Utils.GeneradorHashes;
-import mx.jalan.gdcu.Vista.VistaModelos.MenuTabla;
 import mx.jalan.gdcu.Vista.VistaModelos.TablaArchivoDetalles;
 import mx.jalan.gdcu.Vista.VistaModelos.TablaModeloArchivoDetalles;
 
@@ -20,35 +15,17 @@ public class Detalles extends javax.swing.JFrame {
 
     private CtrlDetalles controlador;
     
-    private TablaModeloArchivoDetalles tMAD;
-    
-    private GeneradorHashes gH;
-    
     /**
      * Creates new form BusquedaDetalles
      */
     public Detalles(CtrlDetalles controlador) {
         initComponents();
         this.controlador = controlador;
-        initTable();
         
-        gH = new GeneradorHashes(controlador.getArchivos(), tablaArchivos, tMAD);
-        //gH.initEjecutador();
-    }
-    
-    private void initTable(){
-        tMAD = new TablaModeloArchivoDetalles(controlador.getArchivos());
-        tablaArchivos.setModelo(tMAD);
-        
-        tablaArchivos.setAutoCreateRowSorter(true);
     }
     
     public JButton getBtnFiltro(){
         return btnFiltrar;
-    }
-    
-    public TablaModeloArchivoDetalles getModelo(){
-        return tMAD;
     }
     
     public TablaArchivoDetalles getTabla(){
@@ -120,7 +97,7 @@ public class Detalles extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(lblElementos))
                 .addContainerGap())

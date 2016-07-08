@@ -39,8 +39,12 @@ public class FileManager {
     private int archivosRarConContraseña;
     private int archivosZipConContraseña;
     
+    private Process p;
+    
     private String[] argsPass = {"", "l", "-p-", "-y", "-o+", ""}; //Verifica si el archivo tiene contraseña y de si es valido
     private String[] argsValidPass = {"", "t", "-p", "-y", "-o+", ""}; //Verifica si la contraseña es valida
+    
+    private boolean contraseñaValida;
     
     public FileManager() throws URISyntaxException{
         //unrarPath = FileManager.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
@@ -248,20 +252,14 @@ public class FileManager {
     public boolean validarContraseñaRar() throws IOException{
         boolean contraseñaValida = false;
         
-        //int cont = 1;
-        
-        //System.out.println("Comando utilizado: ");
-        //for(String args : argsValidPass){
-        //    System.out.print(args);
-        //}
         ProcessBuilder pb = new ProcessBuilder(argsValidPass);
-        Process p = pb.start();
+        cronometro(1);
+        p = pb.start();
         
         //BufferedReader reader  = new BufferedReader(new InputStreamReader(p.getInputStream()));
         BufferedReader readerErr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-        
-        //String line = null;
         String lineError = null;
+        
         lineError = readerErr.readLine();
         if(lineError != null){
             contraseñaValida = false;
@@ -293,7 +291,31 @@ public class FileManager {
         }
         */
         
+        
         return contraseñaValida;
+    }
+    
+    //TODO checar la velocidad con la que comprueba la contraseña
+    
+    public void cronometro(int segundos){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(segundos*1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(p.isAlive()){
+                    System.out.println("No ha terminado de ejecutar");
+                    p.destroy();
+                    System.out.println("El proceso sigue activo = " + p.isAlive());
+                }
+                
+            }
+        });
+        
+        t.start();
     }
     
     public void setPathFile(String path){

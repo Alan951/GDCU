@@ -15,6 +15,10 @@ public class Archivo extends File{
     private String errorMensaje;
     private String password;
     
+    private String linkFuente;
+    private String linkDescarga;
+    private String comentarios;
+    
     private String hash;
     
     public Archivo(String pathname) {
@@ -36,6 +40,12 @@ public class Archivo extends File{
         super(pathname);
         setEsValido(isValid);
         setErrorMensaje(mensaje);
+    }
+    
+    public void setDetalles(String linkFuente, String linkDescarga, String comentarios){
+        setLinkFuente(linkFuente);
+        setLinkDescarga(linkDescarga);
+        setComentarios(comentarios);
     }
     
     public boolean getEsValido() {
@@ -80,6 +90,30 @@ public class Archivo extends File{
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+    
+    public void setLinkFuente(String linkFuente){
+        this.linkFuente = linkFuente;
+    }
+    
+    public String getLinkFuente(){
+        return linkFuente;
+    }
+    
+    public void setLinkDescarga(String linkDescarga){
+        this.linkDescarga = linkDescarga;
+    }
+    
+    public String getLinkDescarga(){
+        return linkDescarga;
+    }
+    
+    public void setComentarios(String comentarios){
+        this.comentarios = comentarios;
+    }
+    
+    public String getComentarios(){
+        return comentarios;
     }
     
 }

@@ -27,6 +27,12 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
     
     private Filtrador filtrador;
     
+    public TablaModeloArchivoDetalles(ArrayList<Archivo> archivos){
+        if(archivos != null)
+            this.archivos = archivos;
+        else
+            this.archivos = new ArrayList<Archivo>();
+    }
     
     public void aplicarFiltro(FiltroBusqueda filtro){    
         if(filtrador == null){
@@ -76,13 +82,6 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
             return archivos;
     }
     
-    public TablaModeloArchivoDetalles(ArrayList<Archivo> archivos){
-        if(archivos != null)
-            this.archivos = archivos;
-        else
-            this.archivos = new ArrayList<Archivo>();
-    }
-    
     public void update(){
         this.fireTableDataChanged();
     }
@@ -92,10 +91,12 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
         String columna = getColumnName(column);
         
         switch(columna){
-            case "Fecha de creacion":
+            case "Fecha de creación":
                 return java.util.Date.class;
             case "Tamaño":
                 return Long.class;
+            case "Ruta":
+                return Archivo.class;
             default: return Object.class;
         }
     }
@@ -114,7 +115,7 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
             case 0: return "Nombre";
             case 1: return "Tamaño";
             case 2: return "Ruta";
-            case 3: return "Fecha de creacion";
+            case 3: return "Fecha de creación";
             case 4: return "Contrasña";
             case 5: return "Hash MD5"; 
             default: return "NA";
@@ -138,7 +139,7 @@ public class TablaModeloArchivoDetalles extends AbstractTableModel{
         switch(columnIndex){
             case 0: return archivo.getName();
             case 1: return archivo.length();
-            case 2: return archivo.getAbsolutePath();
+            case 2: return archivo;
             case 3: 
                 Date fecha = null;
                 

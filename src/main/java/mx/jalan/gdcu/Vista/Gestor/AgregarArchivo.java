@@ -5,6 +5,7 @@
  */
 package mx.jalan.gdcu.Vista.Gestor;
 
+import java.awt.Color;
 import mx.jalan.gdcu.Modelo.Archivo;
 import mx.jalan.gdcu.Utils.FileManager;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import net.lingala.zip4j.exception.ZipException;
 
@@ -32,6 +39,11 @@ public class AgregarArchivo extends javax.swing.JDialog {
     
     private FileManager fM;
     
+    private AgregarArchivo esteDialog = this;
+    
+    private LineBorder borderRed;
+    private Border borderDefault;
+    
     public AgregarArchivo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -45,11 +57,58 @@ public class AgregarArchivo extends javax.swing.JDialog {
         lblPass.setVisible(false);
         txtPass.setVisible(false);
         
+        borderRed = new LineBorder(Color.RED);
+        borderDefault = UIManager.getBorder("TextField.border");
+        
         //Listeners
         initBtnListeners();
+        initTxtListeners();
         
         this.setLocationRelativeTo(parent);
         this.setVisible(true);
+        
+        
+    }
+    
+    public void initTxtListeners(){
+        txtArchivoPath.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                warn();
+            }
+            
+            
+            public void warn(){
+                if(!txtArchivoPath.getText().trim().isEmpty()){
+                    File f = new File(txtArchivoPath.getText());
+                
+                    if(!f.exists()){
+                        //JOptionPane.showMessageDialog(esteDialog, "La ruta ingresada no es correcta", "Ruta incorrecta", JOptionPane.ERROR_MESSAGE);
+                        txtArchivoPath.setBorder(borderRed);
+                        btnDetalles.setVisible(false);
+                    }else{
+                        if(!f.isFile()){
+                            txtArchivoPath.setBorder(borderRed);    
+                            btnDetalles.setVisible(false);
+                        }else{
+                            txtArchivoPath.setBorder(borderDefault);
+                            
+                            btnDetalles.setVisible(true);
+                        }
+                    }
+                }
+            }
+        });
     }
     
     private void initBtnListeners(){
@@ -161,6 +220,7 @@ public class AgregarArchivo extends javax.swing.JDialog {
         btnSeleccionarArchivo = new javax.swing.JButton();
         lblPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JTextField();
+        btnDetalles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar archivo al gestor");
@@ -175,14 +235,18 @@ public class AgregarArchivo extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Selecciona un archivo zip o rar");
 
-        txtArchivoPath.setText("  ");
         txtArchivoPath.setToolTipText("");
-        txtArchivoPath.setEnabled(false);
-        txtArchivoPath.setFocusable(false);
 
         btnSeleccionarArchivo.setText("Seleccionar archvio");
 
         lblPass.setText("Contraseña");
+
+        btnDetalles.setText("Agregar mas detalles");
+        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetallesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,6 +260,8 @@ public class AgregarArchivo extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnDetalles)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnAceptar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnCancelar))
@@ -228,16 +294,25 @@ public class AgregarArchivo extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAceptar)
-                            .addComponent(btnCancelar))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                            .addComponent(btnCancelar)
+                            .addComponent(btnDetalles))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
+        Detalles det = new Detalles(null, true);
+        if(det.pressOk()){
+            archivo.setDetalles(det.getLinkFuente(), det.getLinkDescarga(), det.getComentarios());
+        }
+    }//GEN-LAST:event_btnDetallesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnSeleccionarArchivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

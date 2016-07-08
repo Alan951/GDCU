@@ -1,8 +1,8 @@
-package mx.jalan.gdcu.Vista.VistaModelos;
+package mx.jalan.gdcu.Vista.VistaModelos.TablaRender;
 
 /**
  *
- * @author Jorge
+ * @author Jorge Alan Villalón Pérez
  */
 public class Render{
     
@@ -12,5 +12,9 @@ public class Render{
     
     public static TamañoRender getTamañoRender(){
         return new TamañoRender();
+    }
+    
+    public static RutaRender getRutaRender(){
+        return new RutaRender();
     }
 }

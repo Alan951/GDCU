@@ -33,6 +33,8 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
+                          <Component id="btnDetalles" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
@@ -76,10 +78,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDetalles" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,10 +115,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtArchivoPath">
       <Properties>
-        <Property name="text" type="java.lang.String" value="  "/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
-        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSeleccionarArchivo">
@@ -129,6 +129,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPass">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDetalles">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar mas detalles"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDetallesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
