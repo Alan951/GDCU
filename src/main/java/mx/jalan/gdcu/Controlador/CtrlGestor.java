@@ -258,7 +258,6 @@ public class CtrlGestor {
                 System.out.println("El modelo se ha limpiado!");
             }
         });
-        
     }
     
     public boolean isVisible(){
