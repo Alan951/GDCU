@@ -151,11 +151,6 @@ public class Archivo extends File{
         return fechaCreacion;
     }
     
-    /*
-    public long getTamaño(){
-        return tamaño;
-    }*/
-
     @Override
     public String toString() {
         return "Archivo{" + "estaCifrado=" + estaCifrado + ", esValido=" + esValido + ", errorMensaje=" + errorMensaje + ", password=" + password + ", ruta=" + ruta + ", nombre=" + nombre + ", tama\u00f1o=" + tamaño + ", fechaCreacion=" + fechaCreacion + ", linkFuente=" + linkFuente + ", linkDescarga=" + linkDescarga + ", comentarios=" + comentarios + ", hash=" + hash + '}';
